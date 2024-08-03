@@ -2,6 +2,8 @@ from utils import read_video, save_video
 from trackers import Tracker
 from team_assigner import TeamAssigner
 import cv2
+import numpy as np
+from player_ball_assigner import PlayerBallAssigner
 
 def main():
     # Read Video
@@ -11,6 +13,9 @@ def main():
     tracks = tracker.get_object_tracks(video_frames,
                                        read_from_stub=True,
                                        stub_path='stubs/track_stubs.pkl')
+
+
+    tracks['ball'] = tracker.interpolate_ball_positions(tracks["ball"])
 
     team_assigner = TeamAssigner()
     team_assigner.assign_team_color(video_frames[0], 
