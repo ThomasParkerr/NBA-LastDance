@@ -8,7 +8,7 @@ def main():
 
     tracker = Tracker('models/yolov8_trained_best_model.pt')
     tracks = tracker.get_object_tracks(video_frames,
-                                       read_from_stub=False,
+                                       read_from_stub=True,
                                        stub_path='stubs/track_stubs.pkl')
 
     for track_id, player in tracks['players'][0].items():
