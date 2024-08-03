@@ -38,12 +38,11 @@ class viewTransformer:
 
 
   def transform_point(self, point):
-    p = int(point[0], int(point[1]))
-    inside = cv2.pointPolygonTest(p, self.pixel_vertices,p,False)>=0
+    p = (int(point[0]), int(point[1]))
+    inside = cv2.pointPolygonTest(self.pixel_vertices, p, False) >= 0
     if not inside:
-      return None
-
-    reshaped_point = point.reshape(-1, 1, 2).astype(np.float32)
+        return None
+    reshaped_point = np.array([point]).astype(np.float32)
     transformed_point = cv2.perspectiveTransform(reshaped_point, self.perspective_transform)
-    return transformed_point.reshape(-1,2)
+    return transformed_point.reshape(-1, 2)
   
