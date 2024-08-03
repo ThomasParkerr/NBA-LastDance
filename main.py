@@ -4,7 +4,7 @@ from team_assigner import TeamAssigner
 import cv2
 import numpy as np
 from player_ball_assigner import PlayerBallAssigner
-from camera_movement_estimator import CameraMovementEstimator
+from camera_movement_estimator.camera_movement_estimator import CameraMovementEstimator
 
 def main():
     # Read Video
