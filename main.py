@@ -10,10 +10,10 @@ from view_transformer import viewTransformer
 
 def main():
     # Read Video
-    video_frames = read_video('input_videos/08fd33_4.mp4')
+    video_frames = read_video('input videos/1.mp4')
 
     # Initialize Tracker
-    tracker = Tracker('models/best.pt')
+    tracker = Tracker('models/yolov8_trained_best_model.pt')
 
     tracks = tracker.get_object_tracks(video_frames,
                                        read_from_stub=True,
@@ -77,7 +77,7 @@ def main():
     output_video_frames = camera_movement_estimator.draw_camera_movement(output_video_frames,camera_movement_per_frame)
 
     # Save video
-    save_video(output_video_frames, 'output_videos/output_video.avi')
+    save_video(output_video_frames, 'output_videos/Results.mp4')
 
 if __name__ == '__main__':
     main()
