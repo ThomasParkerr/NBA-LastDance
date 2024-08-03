@@ -30,7 +30,7 @@ def main():
 
 
     # View Trasnformer
-    view_transformer = ViewTransformer()
+    view_transformer = viewTransformer()
     view_transformer.add_transformed_position_to_tracks(tracks)
 
     # Interpolate Ball Positions
