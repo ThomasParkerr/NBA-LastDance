@@ -42,7 +42,12 @@ class viewTransformer:
     inside = cv2.pointPolygonTest(self.pixel_vertices, p, False) >= 0
     if not inside:
         return None
-    reshaped_point = np.array([point]).astype(np.float32)
+    
+    # Reshape the point to (1, 1, 2) and add a third coordinate
+    reshaped_point = np.array([[[point[0], point[1], 1]]], dtype=np.float32)
+    
     transformed_point = cv2.perspectiveTransform(reshaped_point, self.perspective_transform)
-    return transformed_point.reshape(-1, 2)
+    
+    # Return the first two coordinates of the transformed point
+    return transformed_point[0, 0, :2]
   
