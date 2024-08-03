@@ -2,6 +2,34 @@ import numpy as np
 import cv2
 
 class viewTransformer:
+  
+  def transform_point(self, point):
+    try:
+        # Convert the point[0] to an integer using base point[1]
+        base = int(point[1])
+        if base < 2 or base > 36:
+            raise ValueError(f"Base {base} is out of range. Must be between 2 and 36.")
+        p = int(point[0], base)
+        
+        # Convert 'p' to a format suitable for cv2.pointPolygonTest
+        # Assuming 'self.pixel_vertices' is a list of vertices of the polygon
+        # and 'p' should be in (x, y) format. If necessary, adjust 'p' to match expected format.
+        point_for_testing = (p, p)  # Assuming point needs to be in (x, y) format, adjust as necessary
+
+        # Perform the polygon test
+        inside = cv2.pointPolygonTest(self.pixel_vertices, point_for_testing, False) >= 0
+        
+        # Return None if the point is outside the polygon, otherwise return the transformed point
+        if not inside:
+            return None
+        
+        return p
+    
+    except ValueError as e:
+        print(f"Error converting point: {e}")
+        # Handle the error or provide a default value
+        return None
+
   def __init__(self):
     court_width =23
     court_length = 5.83
@@ -35,14 +63,3 @@ class viewTransformer:
           if position_transformed is not None:
             position_transformed = position_transformed.squeeze().tolist()
           tracks[object][frame_num][track_id]['position_transformed'] = position_transformed
-
-
-  def transform_point(self, point):
-    p = int(point[0], int(point[1]))
-    inside = cv2.pointPolygonTest(p, self.pixel_vertices,p,False)>=0
-    if not inside:
-      return None
-
-    reshaped_point = point.reshape(-1, 1, 2).astype(np.float32)
-    transformed_point = cv2.perspectiveTransform(reshaped_point, self.perspective_transform)
-    return transformed_point.reshape(-1,2)
