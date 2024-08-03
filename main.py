@@ -1,5 +1,6 @@
 from utils import read_video, save_video
 from trackers import Tracker
+from team_assigner import TeamAssigner
 import cv2
 
 def main():
