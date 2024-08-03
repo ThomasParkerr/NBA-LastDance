@@ -5,7 +5,7 @@ def main():
     # Read Video
     video_frames = read_video('input videos/1.mp4')
 
-    tracker = Tracker('models/yolo_best_trained_model.pt')
+    tracker = Tracker('models/yolov8_trained_best_model.pt')
     tracks = tracker.get_object_tracks(video_frames,
                                        read_from_stub=False,
                                        stub_path='stubs/track_stubs.pkl')
