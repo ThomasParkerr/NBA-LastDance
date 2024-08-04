@@ -21,11 +21,11 @@ def main():
     tracker.add_position_to_tracks(tracks)
 
     # Camera Movement Estimator
-    camera_movement_estimator = CameraMovementEstimator(video_frames[0])
-    camera_movement_per_frame = camera_movement_estimator.get_camera_movement(video_frames,
+    # camera_movement_estimator = CameraMovementEstimator(video_frames[0])
+    # camera_movement_per_frame = camera_movement_estimator.get_camera_movement(video_frames,
                                                                                 read_from_stub=False,
                                                                                 stub_path='stubs/camera_movement_stub.pkl')
-    camera_movement_estimator.add_adjust_positions_to_tracks(tracks, camera_movement_per_frame)
+    # camera_movement_estimator.add_adjust_positions_to_tracks(tracks, camera_movement_per_frame)
 
     # View Transformer (if needed)
     # view_transformer = viewTransformer()
@@ -67,13 +67,13 @@ def main():
 
     # Draw output
     # Draw object Tracks
-    # output_video_frames = tracker.draw_annotations(video_frames, tracks, team_ball_control)
+      output_video_frames = tracker.draw_annotations(video_frames, tracks, team_ball_control)
 
     # Draw Camera Movement
-    output_video_frames = camera_movement_estimator.draw_camera_movement(output_video_frames, camera_movement_per_frame)
+    # output_video_frames = camera_movement_estimator.draw_camera_movement(output_video_frames, camera_movement_per_frame)
 
     # Draw Speed and Distance
-    #output_video_frames = speed_and_distance_estimator.draw_speed_and_distance(output_video_frames, tracks)
+    # output_video_frames = speed_and_distance_estimator.draw_speed_and_distance(output_video_frames, tracks)
 
     # Save Video
     save_video(output_video_frames, 'output_videos/Results.mp4')
