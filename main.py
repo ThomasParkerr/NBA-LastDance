@@ -21,7 +21,7 @@ def main():
     tracker.add_position_to_tracks(tracks)
 
     # Camera Movement Estimator
-    camera_movement_estimator = CameraMovementEstimator()
+    camera_movement_estimator = CameraMovementEstimator(video_frames[0])
     camera_movement_per_frame = camera_movement_estimator.get_camera_movement(video_frames,
                                                                                 read_from_stub=False,
                                                                                 stub_path='stubs/camera_movement_stub.pkl')
