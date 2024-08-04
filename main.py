@@ -15,7 +15,7 @@ def main():
     tracker = Tracker('models/yolov8_trained_best_model.pt')
 
     tracks = tracker.get_object_tracks(video_frames,
-                                       read_from_stub=False,
+                                       read_from_stub=True,
                                        stub_path='stubs/track_stubs.pkl')
     # Get object positions 
     tracker.add_position_to_tracks(tracks)
@@ -32,7 +32,7 @@ def main():
     # view_transformer.add_transform_positions_to_tracks(tracks)
 
     # Interpolate Ball Positions
-    tracks["ball"] = tracker.interpolate_ball_positions(tracks["ball"])
+    #tracks["ball"] = tracker.interpolate_ball_positions(tracks["ball"])
 
     # Speed and Distance Estimator
     # speed_and_distance_estimator = SpeedAndDistanceEstimator()
@@ -67,7 +67,7 @@ def main():
 
     # Draw output
     # Draw object Tracks
-    output_video_frames = tracker.draw_annotations(video_frames, tracks, team_ball_control)
+    output_video_frames = tracker.draw_annotations(video_frames, tracks)
 
     # Draw Camera Movement
     # output_video_frames = camera_movement_estimator.draw_camera_movement(output_video_frames, camera_movement_per_frame)
