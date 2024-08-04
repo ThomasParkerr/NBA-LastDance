@@ -9,7 +9,7 @@ from speed_and_distance_estimator import SpeedAndDistanceEstimator  # Updated im
 
 def main():
     # Read Video
-    video_frames = read_video('input_videos/1.mp4')
+    video_frames = read_video('input videos/1.mp4')
 
     # Initialize Tracker
     tracker = Tracker('models/yolov8_trained_best_model.pt')
