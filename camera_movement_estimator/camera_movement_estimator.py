@@ -40,7 +40,7 @@ class CameraMovementEstimator():
                     
 
 
-    def get_camera_movement(self,frames,read_from_stub=False, stub_path='stubs/camera_stubs.pkl):
+    def get_camera_movement(self,frames,read_from_stub=False, stub_path='stubs/camera_stubs.pkl'):
         # Read the stub 
         if read_from_stub and stub_path is not None and os.path.exists(stub_path):
             with open(stub_path,'rb') as f:
